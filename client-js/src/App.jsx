@@ -1,8 +1,22 @@
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+} from "@apollo/client";
+
+
+// apollo client setup
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/graphql',
+  cache: new InMemoryCache()
+});
+
+
 const App = () =>{
   return (
-    <h1 className="text-3xl font-bold underline">
+    <ApolloProvider client={client}>
       Hello world!
-    </h1>
+    </ApolloProvider>
   )
 }
 
