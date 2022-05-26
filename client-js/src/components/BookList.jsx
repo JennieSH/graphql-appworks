@@ -7,7 +7,7 @@ const BookList = () => {
   const { loading, error, data } = useQuery(getBooksQuery);
   const [selectedBookId, setSelectedBookId] = useState(null);
 
-  console.log(data);
+  // console.log(data);
 
   if (error) return <p>Oops! Error!</p>;
   return (
@@ -16,7 +16,7 @@ const BookList = () => {
         <h1 className="font-bold text-center text-3xl font-mono mb-12">
           Reading List
         </h1>
-        <div className="flex gap-3">
+        <div className="flex gap-3 flex-wrap">
           {loading ? (
             <p className="animate-pulse">Loading ...</p>
           ) : (

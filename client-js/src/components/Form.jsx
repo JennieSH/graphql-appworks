@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useQuery } from "@apollo/client";
-import { getAuthorsQuery } from "../queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { getAuthorsQuery, addBookMutation, getBooksQuery } from "../queries";
 
 const Form = ({ className }) => {
   const [name, setName] = useState("");
@@ -8,13 +8,31 @@ const Form = ({ className }) => {
   const [authorId, setAuthorId] = useState("");
 
   const { loading, data } = useQuery(getAuthorsQuery);
+  // 寫法一
+  const [addBook] = useMutation(addBookMutation, {
+    refetchQueries: [getBooksQuery],
+    onCompleted: (res) => {
+      console.log(res);
+      setName("");
+      setGenre("");
+      setAuthorId("");
+    },
+    onError: () => alert("Error !"),
+  });
+
+  // 寫法二： addBook 可以直接呼叫，不用傳參數
+  // useMutation 第二參數為一 options
+  // const [addBook, { data: addBookRes, error, loading }] = useMutation(
+  //   addBookMutation,
+  //   { variables: { name, genre, authorId }, refetchQueries: [getBooksQuery] }
+  // );
 
   const submitForm = (e) => {
     e.preventDefault();
-    alert(name);
+    if (name && genre && authorId)
+      addBook({ variables: { name, genre, authorId } });
   };
 
-  console.log(data);
   return (
     <form
       className={`${className} w-[600px] p-10 flex flex-col items-end gap-4 bg-gray-50 `}
@@ -25,6 +43,7 @@ const Form = ({ className }) => {
         <input
           className="w-60 p-2 rounded-sm focus:outline-stone-400"
           type="text"
+          value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
@@ -33,6 +52,7 @@ const Form = ({ className }) => {
         <input
           className="w-60 p-2 rounded-sm focus:outline-stone-400"
           type="text"
+          value={genre}
           onChange={(e) => setGenre(e.target.value)}
         />
       </div>
@@ -40,6 +60,7 @@ const Form = ({ className }) => {
         <label>Author：</label>
         <select
           className="w-60 p-2 rounded-sm focus:outline-stone-400"
+          value={authorId}
           onChange={(e) => setAuthorId(e.target.value)}
         >
           <option>Select author</option>
