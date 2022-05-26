@@ -3,7 +3,8 @@ import {
   InMemoryCache,
   ApolloProvider,
 } from "@apollo/client";
-
+import BookList from './components/BookList'
+import Form from './components/Form'
 
 // apollo client setup
 const client = new ApolloClient({
@@ -15,7 +16,8 @@ const client = new ApolloClient({
 const App = () =>{
   return (
     <ApolloProvider client={client}>
-      Hello world!
+      <BookList />
+      <Form className="absolute bottom-0" />
     </ApolloProvider>
   )
 }
