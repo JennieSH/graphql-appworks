@@ -4,9 +4,10 @@ import { getBookQuery } from "../queries";
 const BookDetail = ({ bookId }) => {
   const { data, loading } = useQuery(getBookQuery, {
     variables: { id: bookId },
+    skip: !bookId,
   });
 
-  console.log(data);
+  // console.log(data);
 
   if (loading) return null;
   return (
