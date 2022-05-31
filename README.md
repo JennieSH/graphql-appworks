@@ -6,20 +6,19 @@
 
 可依照練習的需求，選擇想要的專案～
 
-:::spoiler :bulb:只想使用 `GraphiQL` 練習寫 query
+<br>
 
-> 只需要起 server 即可，[步驟參考下方](#Server)，`GraphiQL` 會 run 在 http://localhost:4000/graphql
-> :::
+**Q1：** 只想使用 `GraphiQL` 練習寫 query
 
-:::spoiler :bulb:只想練習前端接 GraphQL
+只需要起 server 即可，[步驟參考下方](#Server)，`GraphiQL` 會 run 在 http://localhost:4000/graphql
 
-> 需要同時起 server 和 client，[步驟參考下方](#Getting-Started)，另外，[feature/template](https://github.com/JennieSH/graphql-appworks/tree/feature/template) 有提供切好的版，但尚未串接 GraphQL (`client-js`)，可以單純練習前端 GraphQL 串接
-> :::
+**Q2：** 只想練習前端接 GraphQL
 
-:::spoiler :question:可以改接自己 DB 嗎？
+需要同時起 server 和 client，[步驟參考下方](#Getting-Started)，另外，[feature/template](https://github.com/JennieSH/graphql-appworks/tree/feature/template) 有提供切好的版，但尚未串接 GraphQL (`client-js`)，可以單純練習前端 GraphQL 串接
 
-> 可以，自行在 `app.js` 檔案中，更換自己的 MongoDB，或者直接使用別的 DB，但如果要同時使用前端的檔案，要注意 Schema 需照目前設計
-> :::
+**Q3：** 可以改接自己 DB 嗎？
+
+可以，自行在 `app.js` 檔案中，更換自己的 MongoDB，或者直接使用別的 DB，但如果要同時使用前端的檔案，要注意 Schema 需照目前設計
 
 ### client 差別
 
