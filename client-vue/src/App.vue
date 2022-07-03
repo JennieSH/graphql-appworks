@@ -2,17 +2,9 @@
 import { watch } from "vue";
 import BookList from "./components/BookList.vue";
 import Form from "./components/Form.vue";
-import { useQuery } from "@vue/apollo-composable";
-import gql from "graphql-tag";
+import { useBooksQuery } from "./generated/graphql";
 
-const { result } = useQuery(gql`
-  {
-    books {
-      name
-      id
-    }
-  }
-`);
+const { result, loading } = useBooksQuery();
 
 watch(() => {
   console.log(result.value);
